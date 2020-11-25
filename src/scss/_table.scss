@@ -1,0 +1,79 @@
+@import 'variables';
+
+table {
+	border-collapse: collapse;
+
+	tr td {
+		border-bottom: 1px solid #000;
+	}
+}
+
+.data-row {
+	&--hidden {
+		display: none;
+	}
+}
+
+@mixin cell {
+	width: 30px;
+	height: 30px;
+	border: 1px solid #000;
+}
+
+.non-compliant {
+	@include cell;
+	background-color: white;
+}
+
+.primary-compliance {
+	@include cell;
+	background-color: $primary-compliance;
+}
+
+.secondary-compliance {
+	@include cell;
+	background-color: $secondary-compliance;
+}
+
+.operational-compliance {
+	@include cell;
+	background-color: $operational-compliance;
+}
+
+.no-change {
+	@include cell;
+	background-color: $no-change;
+}
+
+.increase-one {
+	@include cell;
+	background-color: $one-increase;
+}
+
+.increase-two {
+	@include cell;
+	background-color: $two-increase;
+}
+
+.increase-three {
+	@include cell;
+	background-color: $three-increase;
+}
+.decrease-one {
+	@include cell;
+	background-color: $one-drop;
+}
+
+.decrease-two {
+	@include cell;
+	background-color: $two-drop;
+}
+
+.decrease-three {
+	@include cell;
+	background-color: $three-drop;
+}
+
+.category-row {
+	text-align: center;
+}

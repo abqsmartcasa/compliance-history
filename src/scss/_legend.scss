@@ -1,0 +1,73 @@
+@import 'variables';
+
+$legend-cell-size: 15px;
+
+@mixin legend-icon {
+	height: $legend-cell-size;
+	width: $legend-cell-size;
+	margin: 0 4px;
+	border: 1px solid #000;
+}
+
+.legend-item {
+	display: flex;
+	align-items: center;
+
+	&--hidden {
+		display: none;
+	}
+}
+
+.legend-item-non-compliant {
+	@include legend-icon;
+	background-color: $non-compliant;
+}
+
+.legend-item-primary-compliance {
+	@include legend-icon;
+	background-color: $primary-compliance;
+}
+
+.legend-item-secondary-compliance {
+	@include legend-icon;
+	background-color: $secondary-compliance;
+}
+
+.legend-item-operational-compliance {
+	@include legend-icon;
+	background-color: $operational-compliance;
+}
+
+.legend-item-three-increase {
+	@include legend-icon;
+	background-color: $three-increase;
+}
+.legend-item-two-increase {
+	@include legend-icon;
+	background-color: $two-increase;
+}
+
+.legend-item-one-increase {
+	@include legend-icon;
+	background-color: $one-increase;
+}
+
+.legend-item-no-change {
+	@include legend-icon;
+	background-color: $no-change;
+}
+
+.legend-item-one-drop {
+	@include legend-icon;
+	background-color: $one-drop;
+}
+
+.legend-item-two-drop {
+	@include legend-icon;
+	background-color: $two-drop;
+}
+
+.legend-item-three-drop {
+	@include legend-icon;
+	background-color: $three-drop;
+}
