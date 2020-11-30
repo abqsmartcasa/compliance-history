@@ -1,22 +1,31 @@
 @import 'variables';
 
-table {
+.table {
 	border-collapse: collapse;
-
+	table-layout: fixed;
+	width: 100%;
 	tr td {
 		border-bottom: 1px solid #000;
 	}
 }
 
+.paragraph-title {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: auto;
+}
+
 .data-row {
+	height: 25px;
 	&--hidden {
 		display: none;
 	}
 }
 
 @mixin cell {
-	width: 30px;
-	height: 30px;
+	min-width: 25px;
+	min-height: 25px;
 	border: 1px solid #000;
 }
 
@@ -76,4 +85,16 @@ table {
 
 .category-row {
 	text-align: center;
+	height: 25px;
+	font-weight: bold;
+
+	&--hidden {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.paragraph-description {
+		display: none;
+	}
 }

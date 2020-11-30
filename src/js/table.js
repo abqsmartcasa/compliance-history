@@ -16,9 +16,11 @@ class Table {
 		this.data;
 		this.tableHead = document.querySelector('.table__head');
 		this.dataRows = document.querySelectorAll('.data-row');
+		this.categoryRows = document.querySelectorAll('.category-row');
 		this.buildTable = this.buildTable.bind(this);
 		this.filter = this.filter.bind(this);
 		this.setTableDisplay = this.setTableDisplay.bind(this);
+		this.hideCategoryRows = this.hideCategoryRows.bind(this);
 		this.reset = this.reset.bind(this);
 	}
 
@@ -30,7 +32,8 @@ class Table {
 			headFrag.appendChild(th);
 		}
 		console.log(this.tableHead.querySelector('.top-row'));
-		this.tableHead.querySelector('.top-row').children[1].setAttribute('colspan', data.headers.length);
+		this.tableHead.querySelector('.top-row').children[1].setAttribute('colspan', data.headers.length - 1);
+		this.tableHead.querySelector('.top-row').children[1].style.width = `${(data.headers.length - 1) * 25}px`;
 		this.tableHead.querySelector('.labels').appendChild(headFrag);
 	}
 
@@ -39,13 +42,20 @@ class Table {
 		console.log(this.data);
 		this.buildHead(this.data);
 		const categoryRows = document.querySelectorAll('.category-row');
-		[ ...categoryRows ].map((row) => row.children[0].setAttribute('colspan', this.data.data[0].length + 1));
+		[ ...categoryRows ].map((row) => row.children[0].setAttribute('colspan', this.data.data[0].length));
 		for (let i = 0; i < this.data.data.length; i++) {
 			const item = this.data.data[i];
 			const tr = this.dataRows[i];
-			const paragraphNumber = item.shift();
+			const paragraph = item.shift();
+			const paragraphNumber = paragraph.split(' - ')[0];
+			const paragraphDescription = paragraph.split(' - ')[1];
+			const span = document.createElement('span');
+			span.innerText = ` - ${paragraphDescription}`;
+			span.classList.add('paragraph-description');
 			const td = document.createElement('td');
-			td.innerText = paragraphNumber.substring(0, 40);
+			td.classList.add('paragraph-title');
+			td.innerText = paragraphNumber;
+			td.appendChild(span);
 			tr.appendChild(td);
 			for (const score of item) {
 				const td = document.createElement('td');
@@ -99,11 +109,15 @@ class Table {
 				}
 			}
 		}
+		this.hideCategoryRows();
 	}
 
 	reset() {
 		for (const row of this.dataRows) {
 			row.classList.remove('data-row--hidden');
+		}
+		for (const row of this.categoryRows) {
+			row.classList.remove('category-row--hidden');
 		}
 	}
 
@@ -126,6 +140,22 @@ class Table {
 						td.classList.add(Table.setChangeBackground(change));
 					}
 				}
+			}
+		}
+	}
+
+	hideCategoryRows() {
+		for (let i = 0; i < this.categoryRows.length; i++) {
+			const categorySiblings = nextUntil(this.categoryRows[i], this.categoryRows[i + 1]);
+			let visible = false;
+			for (const sibling of categorySiblings) {
+				if (!sibling.classList.contains('data-row--hidden')) {
+					visible = true;
+					break;
+				}
+			}
+			if (!visible) {
+				this.categoryRows[i].classList.add('category-row--hidden');
 			}
 		}
 	}
@@ -197,6 +227,18 @@ class TableDisplayRadio {
 	onClick(e) {
 		this.emitter.emit('set-table-style', e.target.value);
 	}
+}
+
+function nextUntil(elem, nextElem) {
+	var siblings = [];
+	elem = elem.nextElementSibling;
+
+	while (elem) {
+		if (elem == nextElem) break;
+		siblings.push(elem);
+		elem = elem.nextElementSibling;
+	}
+	return siblings;
 }
 
 export { Table, TableDisplayRadio };
