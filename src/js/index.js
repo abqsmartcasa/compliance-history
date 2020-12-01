@@ -1,7 +1,7 @@
 import mitt from 'mitt';
 import { TableDisplayRadio, Table } from './table';
 import { ImrSelect, ComplianceFilterRadio, FilterButton, ClearButton } from './filters';
-
+import Tooltip from './tooltip';
 import toggleLegend from './legend';
 
 (async () => {
@@ -14,6 +14,7 @@ import toggleLegend from './legend';
 	const increaseFilter = new ComplianceFilterRadio(emitter, radios[1]);
 	const decreaseFilter = new ComplianceFilterRadio(emitter, radios[2]);
 	new ClearButton(emitter);
+	const tooltip = new Tooltip();
 	const filterBtn = new FilterButton(emitter);
 
 	const tableDisplayRadios = document.querySelectorAll('.js-table-display-radio');
@@ -21,6 +22,9 @@ import toggleLegend from './legend';
 
 	emitter.on('set-imr-value', filterBtn.setImr);
 	emitter.on('set-filter', filterBtn.setComplianceChange);
+
+	emitter.on('show-value', tooltip.show);
+	emitter.on('remove-value', tooltip.hide);
 
 	emitter.on('filter', table.filter);
 
@@ -33,6 +37,7 @@ import toggleLegend from './legend';
 
 	emitter.on('set-table-style', table.setTableDisplay);
 	emitter.on('set-table-style', toggleLegend);
+	emitter.on('set-table-style', tooltip.setLookup);
 
 	fetch('./data.json').then((res) => res.json()).then((data) => {
 		table.buildTable(data);
