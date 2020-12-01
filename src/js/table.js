@@ -31,7 +31,6 @@ class Table {
 			th.innerText = `${item}`;
 			headFrag.appendChild(th);
 		}
-		console.log(this.tableHead.querySelector('.top-row'));
 		this.tableHead.querySelector('.top-row').children[1].setAttribute('colspan', data.headers.length - 1);
 		this.tableHead.querySelector('.top-row').children[1].style.width = `${(data.headers.length - 1) * 25}px`;
 		this.tableHead.querySelector('.labels').appendChild(headFrag);
@@ -39,7 +38,6 @@ class Table {
 
 	buildTable(data) {
 		this.data = Table.calculateChange(data);
-		console.log(this.data);
 		this.buildHead(this.data);
 		const categoryRows = document.querySelectorAll('.category-row');
 		[ ...categoryRows ].map((row) => row.children[0].setAttribute('colspan', this.data.data[0].length));
@@ -62,6 +60,7 @@ class Table {
 				td.setAttribute('data-score', score[0]);
 				td.setAttribute('data-change', score[1]);
 				td.classList.add(Table.setBackground(score[0]));
+				new DataCell(td, this.emitter);
 				tr.appendChild(td);
 			}
 		}
@@ -226,6 +225,44 @@ class TableDisplayRadio {
 
 	onClick(e) {
 		this.emitter.emit('set-table-style', e.target.value);
+	}
+}
+
+class DataCell {
+	constructor(elem, emitter) {
+		this.elem = elem;
+		this.emitter = emitter;
+		this.score = this.elem.getAttribute('data-score');
+		this.change = this.elem.getAttribute('data-change');
+
+		this.showValue = this.showValue.bind(this);
+		this.removeValue = this.removeValue.bind(this);
+		this.mouserEnter = this.mouserEnter.bind(this);
+		this.addEventListeners();
+	}
+
+	addEventListeners() {
+		this.elem.addEventListener('mouseenter', this.mouserEnter);
+		this.elem.addEventListener('mouseleave', this.removeValue);
+	}
+
+	mouserEnter() {
+		this.elem.addEventListener('mousemove', this.showValue);
+	}
+
+	showValue(e) {
+		const data = {
+			pageX: e.pageX,
+			pageY: e.pageY,
+			score: this.score,
+			change: this.change
+		};
+		this.emitter.emit('show-value', data);
+	}
+
+	removeValue() {
+		this.emitter.emit('remove-value');
+		this.elem.removeEventListener('mousemove', this.mouseMove);
 	}
 }
 
