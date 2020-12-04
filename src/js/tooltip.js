@@ -24,8 +24,7 @@ class Tooltip {
 		const compliance = this.lookup[value];
 		this.body.innerText = compliance;
 		const { height } = window.getComputedStyle(this.body);
-		const leftPosition = w - data.pageX <= 200 ? data.pageX - 190 : data.pageX + 10;
-		this.elem.style.left = `${leftPosition}px`;
+		this.elem.style.right = `${w - data.pageX + 5}px`;
 		this.elem.style.top = `${data.pageY - parseInt(height) - 10}px`;
 	}
 
