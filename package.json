@@ -13,7 +13,7 @@
     "build-css": "node-sass --include-path scss src/scss/main.scss  dist/style.css --output-style compressed",
     "build": "webpack",
     "watch": "webpack --watch",
-    "deploy": "yarn run clean && yarn run build-css && yarn run build && cp index.html ./dist/index.html && cp data.json ./dist/data.json"
+    "deploy": "yarn run clean && yarn run build-css && yarn run build && cp index.html ./dist/index.html && cp data.json ./dist/data.json && cp -a static/. ./dist/"
   },
   "dependencies": {
     "mitt": "^2.1.0"

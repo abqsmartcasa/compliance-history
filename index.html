@@ -12,7 +12,22 @@
     </style>
 </head>
 <body>
-    <header class="header"><h1 class="title">CASA Compliance</h1></header>
+    <header class="header">
+        <div class="header__main"><h1 class="title">smartCASA Compliance Tracker</h1><div class="sections-btn js-sections-btn">Sections <span class="js-sections-btn__icon sections-btn__icon--closed"></span> </div></div>
+        <div class="js-header__sub header__sub header__sub--hidden">
+                <div class="section-nav">
+                    <span>Jump to section:</span>
+                    <div class="section-link js-section-link" data-section-name="use-of-force">Use of Force: Internal Controls and Accountability</div>
+                    <div class="section-link js-section-link" data-section-name="specialized-units">Specialized Units</div>
+                    <div class="section-link js-section-link" data-section-name="crisis-intervention">Crisis Intervention</div>
+                    <div class="section-link js-section-link" data-section-name="policies-and-training">Policies and Training Generally</div>
+                    <div class="section-link js-section-link" data-section-name="misconduct-complaint">Misconduct Complaint Intake, Investigation, and Adjudication</div>
+                    <div class="section-link js-section-link" data-section-name="staffing-management-supervision">Staffing, Management, and Supervision</div>
+                    <div class="section-link js-section-link" data-section-name="recruitment-selection-promotions">Recruitment, Selection, and Promotions</div>
+                    <div class="section-link js-section-link" data-section-name="officer-assistance">Officer Assistance and Support</div>
+                    <div class="section-link js-section-link" data-section-name="community-engagement">Community Engagement and Oversight</div>                
+                </div>
+        </div></header>
     <main class="main">
         <section class="toolbar">      
             <div class="toolbar__row">   
@@ -63,6 +78,7 @@
             </div>
             </div>
         </section>
+
         <section class="content">
             <table class="table">
                 <thead class="table__head">
@@ -73,7 +89,7 @@
                     <tr class="labels"></tr>
                 </thead>
                 <tbody class="table__body">
-                    <tr class="category-row"><td>USE OF FORCE: INTERNAL CONTROLS AND ACCOUNTABILITY</td></tr>
+                    <tr class="category-row" id="use-of-force"><td>USE OF FORCE: INTERNAL CONTROLS AND ACCOUNTABILITY</td></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
@@ -150,7 +166,7 @@
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
-                    <tr class="category-row"><td>SPECIALIZED UNITS</td></tr>
+                    <tr class="category-row" id="specialized-units"><td>SPECIALIZED UNITS</td></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
@@ -170,7 +186,7 @@
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
-                    <tr class="category-row"><td>CRISIS INTERVENTION</td></tr>
+                    <tr class="category-row" id="crisis-intervention"><td>CRISIS INTERVENTION</td></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
@@ -199,7 +215,7 @@
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
-                    <tr class="category-row"><td>POLICIES AND TRAINING GENERALLY</td></tr>
+                    <tr class="category-row" id="policies-and-training"><td>POLICIES AND TRAINING GENERALLY</td></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
@@ -224,7 +240,7 @@
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
-                    <tr class="category-row"><td>MISCONDUCT COMPLAINT INTAKE, INVESTIGATION, AND ADJUDICATION</td></tr>
+                    <tr class="category-row" id="misconduct-complaint"><td>MISCONDUCT COMPLAINT INTAKE, INVESTIGATION, AND ADJUDICATION</td></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
@@ -265,7 +281,7 @@
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
-                    <tr class="category-row"><td>STAFFING, MANAGEMENT, AND SUPERVISION</td></tr>
+                    <tr class="category-row" id="staffing-management-supervision"><td>STAFFING, MANAGEMENT, AND SUPERVISION</td></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
@@ -295,7 +311,7 @@
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
-                    <tr class="category-row"><td>RECRUITMENT, SELECTION, AND PROMOTIONS</td></tr>
+                    <tr class="category-row" id="recruitment-selection-promotions"><td>RECRUITMENT, SELECTION, AND PROMOTIONS</td></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
@@ -311,7 +327,7 @@
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
-                    <tr class="category-row"><td> OFFICER ASSISTANCE AND SUPPORT</td></tr>
+                    <tr class="category-row" id="officer-assistance"><td>OFFICER ASSISTANCE AND SUPPORT</td></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
@@ -319,7 +335,7 @@
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
-                    <tr class="category-row"><td> COMMUNITY ENGAGEMENT AND OVERSIGHT</td></tr>
+                    <tr class="category-row" id="community-engagement"><td>COMMUNITY ENGAGEMENT AND OVERSIGHT</td></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
                     <tr class="data-row"></tr>
@@ -364,10 +380,6 @@
     <div class="js-tooltip tooltip tooltip--hidden">
         <div class="js-tooltip__body tooltip__body"></div>
     </div>
-    <footer>
-        <div></div>
-        <div></div>
-    </footer>
     <script src="bundle.js"></script>
 </body>
 </html>

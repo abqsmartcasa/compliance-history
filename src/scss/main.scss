@@ -16,15 +16,46 @@ html {
 }
 
 .header {
-	height: 50px;
+	position: sticky;
 	width: 100vw;
-	display: flex;
-	align-items: center;
 	border-bottom: 1px solid #e0e0e0;
 
-	.title {
-		font-size: 18px;
-		margin: 0 0 0 16px;
+
+	&__main {
+		height: 50px;
+		display: flex;	
+		align-items: center;
+		justify-content: space-between;
+		margin: 0 16px 0 16px;
+
+		.title {
+			font-size: 18px;
+		}
+
+		.sections-btn {
+			cursor: pointer;
+			font-size: 16px;
+			display: flex;
+			align-items: center;
+
+			&__icon--open {
+				content: url('chevron-up.svg');
+			}
+
+			&__icon--closed {
+				content: url('chevron-down.svg');
+			}
+
+		}
+	}
+
+	&__sub {
+		display: block;
+		margin: 0 16px 0 16px;
+	}
+
+	&__sub--hidden {
+		display: none;
 	}
 }
 
@@ -33,10 +64,16 @@ html {
 	height: calc(100vh - 50px);
 }
 
+.main--extended {
+	display: flex;
+	height: calc(100vh - 152px);
+}
+
 .toolbar {
 	display: flex;
 	flex-direction: column;
 	border-right: 1px solid #e0e0e0;
+
 	&__row {
 		display: flex;
 		justify-content: center;
@@ -59,6 +96,23 @@ html {
 	overflow-y: auto;
 	justify-content: center;
 	padding: 32px 16px;
+}
+
+.section-link {
+	cursor: pointer;
+	display: inline-block;
+	padding: 5px 10px;
+	margin: 2px;
+	height: 30px;
+	border: 1px #9d9d9d solid;
+	transition: background-color 0.2s ease-out;
+
+
+	&--click {
+		transition: background-color 0.2s ease-in;
+		background-color: #9d9d9d;
+
+	}
 }
 
 @media only screen and (max-width: 900px) {
